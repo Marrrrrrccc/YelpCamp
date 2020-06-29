@@ -15,10 +15,12 @@ const campgrounds = [
     name: "Mountain Goat's rest",
     image: "https://www.photosforclass.com/download/px_1061640",
   },
+
 ];
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 app.get("/", function (req, res) {
   res.render("landing");
 });
