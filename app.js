@@ -3,28 +3,16 @@ const app = express();
 const bodyParse = require('body-parser');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
+const Campground = require('./models/campground');
+const seedDB = require('./seeds');
 
-const campgroundShecma = mongoose.Schema({
-  name: String,
-  image: String,
-  description: String,
-});
+mongoose.connect("mongodb://localhost:27017/yelp_campv2", { useNewUrlParser: true, useUnifiedTopology: true });
 
-const Campground = mongoose.model("Campground", campgroundShecma);
-// Campground.create({
-//   name: "Marc hill",
-//   image: "https://www.photosforclass.com/download/px_699558",
-//   description: "This is marc hill"
-// }, (err, campground) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log(campground);
-//   }
-// });
+
+
 
 app.set("view engine", "ejs");
+seedDB();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.get("/", function (req, res) {
@@ -66,12 +54,14 @@ app.get("/campgrounds/new", function (req, res) {
 //show
 app.get("/campgrounds/:id", function (req, res) {
 
-  Campground.findById(req.params.id, (err, foundCampground) => {
+  Campground.findById(req.params.id).populate("comments").exec(function (err, foundCampground) {
+    console.log(foundCampground)
     if (err) {
       console.log(err);
     } else {
-      res.render("show", { foundCampground: foundCampground });
+      res.render("show", { campground: foundCampground });
     }
+
   });
 
 })
