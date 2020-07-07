@@ -19,7 +19,7 @@ const data = [
     }
 ];
 function seedDB() {
-    Campground.remove({}, function (err) {
+    Campground.deleteMany({}, function (err) {
         if (err) {
             console.log(err);
         } console.log("campground removed");
