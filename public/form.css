@@ -1,7 +1,6 @@
-#form {
-    width: 30%;
-    margin: 25px auto;
+#image{
+    width: 100%;
 }
-h1{
-    text-align: center;
+#caption{
+    padding: 9px;
 }

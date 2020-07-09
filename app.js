@@ -7,7 +7,7 @@ const Campground = require('./models/campground');
 const Comments = require('./models/comments');
 const seedDB = require('./seeds');
 
-mongoose.connect("mongodb://localhost:27017/yelp_campv2", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 
@@ -56,7 +56,6 @@ app.get("/campgrounds/new", function (req, res) {
 app.get("/campgrounds/:id", function (req, res) {
 
   Campground.findById(req.params.id).populate("comments").exec(function (err, foundCampground) {
-    console.log(foundCampground)
     if (err) {
       console.log(err);
     } else {
