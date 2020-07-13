@@ -7,3 +7,10 @@
 .thumbnail .caption{
     padding: 9px;
 }
+#comment{
+    text-align: center;
+}
+#form{
+    width: 30%;
+    margin: 25px auto;
+}
