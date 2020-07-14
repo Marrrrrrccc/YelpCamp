@@ -16,7 +16,6 @@ const campgroundsRoutes = require('./routes/campgrounds')
 const indexRoutes = require('./routes/index')
 mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
 app.set("view engine", "ejs");
-seedDB();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
