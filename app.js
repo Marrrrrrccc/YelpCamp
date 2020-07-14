@@ -14,8 +14,7 @@ const User = require('./models/user');
 const commentsRoutes = require('./routes/comments')
 const campgroundsRoutes = require('./routes/campgrounds')
 const indexRoutes = require('./routes/index')
-var session = require('express-session')
-var MemoryStore = require('memorystore')(session)
+const MemoryStore = require('memorystore')(expressSession)
 // mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect('mongodb+srv://admin:Pr0grammerm@rc@yelpcamp.hdvmr.mongodb.net/YelpCamp?retryWrites=true&w=majority',
   {
@@ -30,7 +29,7 @@ mongoose.connect('mongodb+srv://admin:Pr0grammerm@rc@yelpcamp.hdvmr.mongodb.net/
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
-app.use(session({
+app.use(expressSession({
   cookie: { maxAge: 86400000 },
   store: new MemoryStore({
     checkPeriod: 86400000 // prune expired entries every 24h
