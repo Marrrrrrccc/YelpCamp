@@ -32,7 +32,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(expressSession({
   cookie: { maxAge: 86400000 },
   store: new MemoryStore({
-    checkPeriod: 86400000 // prune expired entries every 24h
+    checkPeriod: 86400000 // prune expired entries every 24ha
   }),
   secret: 'keyboard cat'
 }))
