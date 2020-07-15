@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const Campground = require('./models/campground');
 const Comments = require('./models/comments');
-const seedDB = require('./seeds');
+const methodOverride = require('method-override')
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
@@ -15,27 +15,32 @@ const commentsRoutes = require('./routes/comments')
 const campgroundsRoutes = require('./routes/campgrounds')
 const indexRoutes = require('./routes/index')
 const MemoryStore = require('memorystore')(expressSession)
-// mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect('mongodb+srv://admin:Pr0grammerm@rc@yelpcamp.hdvmr.mongodb.net/YelpCamp?retryWrites=true&w=majority',
-  {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true
-  }).then(() => {
-    console.log('Connected');
-  }).catch(err => {
-    console.log(err.message)
-  })
+mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+// mongoose.connect('mongodb+srv://admin:Pr0grammerm@rc@yelpcamp.hdvmr.mongodb.net/YelpCamp?retryWrites=true&w=majority',
+//   {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+//   }).then(() => {
+//     console.log('Connected');
+//   }).catch(err => {
+//     console.log(err.message)
+//   })
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
-app.use(expressSession({
-  cookie: { maxAge: 86400000 },
-  store: new MemoryStore({
-    checkPeriod: 86400000 // prune expired entries every 24ha
-  }),
-  secret: 'keyboard cat'
-}))
+app.use(methodOverride('_method'));
+// app.use(expressSession({
+//   cookie: { maxAge: 86400000 },
+//   store: new MemoryStore({
+//     checkPeriod: 86400000 // prune expired entries every 24h
+//   }),
+//   secret: 'keyboard cat'
+// }))
 
 
 //passport configuration

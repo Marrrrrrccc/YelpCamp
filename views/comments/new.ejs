@@ -1,7 +1,7 @@
 <%- include ("../partials/header") %>
 <div class="container">
     <div class="row">
-        <h1 id="comment">Add new comment <%=campground.name%></h1>
+        <h1 class="header">Add new comment <%=campground.name%></h1>
         <div id="form">
             <form action="/campgrounds/<%=campground._id%>/comments" method="POST">
                 <div class="form-group">
