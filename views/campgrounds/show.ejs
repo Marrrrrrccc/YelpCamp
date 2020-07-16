@@ -19,15 +19,19 @@
                     <p>
                         <em>Submitted by <%=campground.author.username%></em>
                     </p>
+                    <%if(currentUser&&campground.author.id.equals(currentUser.id)){%>
                     <a href="/campgrounds/<%=campground._id%>/edit" class="btn btn-warning">Edit</a>
                     <form id="deleteForm" action="/campgrounds/<%=campground._id%>?_method=delete" method="post">
                         <button class="btn btn-danger">Delete</button>
                     </form>
+                    <%}%>
                 </div>
+                        
             </div>
             <div class="well">
                 <div class="text-right">
-                    <a href="/campgrounds/<%=campground._id%>/comments/new" class="btn btn-success">Add New Comments</a>
+                    <a href="/campgrounds/<%=campground._id%>/comments/new" class="btn btn-success">Add New
+                    Comments</a>
                 </div>
                 <hr>
                 <%campground.comments.forEach(function(comment){%>
