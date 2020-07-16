@@ -16,21 +16,21 @@ const campgroundsRoutes = require('./routes/campgrounds')
 const indexRoutes = require('./routes/index')
 const MemoryStore = require('memorystore')(expressSession)
 const PORT = process.env.PORT || 3000
-// mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://admin:Pr0grammerm@rc@yelpcamp.hdvmr.mongodb.net/YelpCamp?retryWrites=true&w=majority',
-  {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true
-  }).then(() => {
-    console.log('Connected');
-  }).catch(err => {
-    console.log(err.message)
-  })
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://admin:Pr0grammerm@rc@yelpcamp.hdvmr.mongodb.net/YelpCamp?retryWrites=true&w=majority',
+//   {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+//   }).then(() => {
+//     console.log('Connected');
+//   }).catch(err => {
+//     console.log(err.message)
+//   })
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
