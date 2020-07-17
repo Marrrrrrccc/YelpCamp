@@ -10,10 +10,10 @@
 .header{
     text-align: center;
 }
-#form{
+.form{
     width: 30%;
     margin: 25px auto;
 }
-#deleteForm{
+.deleteForm{
     display: inline;
 }
